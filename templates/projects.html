@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AW - Projects Showcase</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --accent-color: #ffff00;
+            /* --text-color: #e0e0e0; */
+            --text-color: #9edbff;
+            --background-color: #111828;
+            --card-background: #1643422e;
+            --gradient-1: linear-gradient(135deg, #00ffff, #ff00ff);
+            --gradient-2: linear-gradient(45deg, #ff00ff, #ffff00);
+            --gradient-3: linear-gradient(45deg, #ff6200, #fbff00);
+            --gradient-4: linear-gradient(135deg, #00ffff, #3198ff);
+            
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        header {
+            background-color: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 255, 255, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .filter-container {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            background: var(--gradient-4);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.4);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-3);
+            color: #fff;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--card-background);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            /* border-top: 2px solid cyan; */
+            /* border-bottom: 2px solid rgb(255, 166, 0); */
+            border-bottom: 2px solid rgb(45 132 137);
+            border-top: 2px solid rgb(45 132 137);
+            /* border-top: 2px solid rgb(255, 166, 0); */
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* border-radius: 15px; */
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--gradient-3);
+            color: #000;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            /* background: var(--gradient-4); */
+            /* box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1); */
+            border: 2px solid rgba(0, 255, 255, 0.1);
+            /* border-bottom: 2px solid cyan; */
+            color: cyan;
+            /* color: #000; */
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            box-shadow: 0 5px 15px rgba(0, 255, 191, 0.4);
+        }
+
+        footer {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-4);
+            border-radius: 10px;
+            border: 2px solid var(--background-color);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Project Showcase</h1>
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Web">Web</button>
+            <!-- <button class="filter-btn" data-filter="Mobile">Mobile</button> -->
+            <button class="filter-btn" data-filter="AI/ML">AI/ML</button>
+            <button class="filter-btn" data-filter="Game">Game</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Pebble AI -->
+            <div class="project" data-categories="Web,AI/ML">
+                <img src="../static/project_thumbnails/pebble_ai_ngdr.png" alt="PebbleAI" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Pebble AI</h3>
+                    <strong>(MECL Hackathon-2024)</strong>
+                    <p class="project-description">A conversational chatbot for mineral acts, regulations, and NGDR data. This project won the 2nd prize in the MECL Hackathon 2024.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML, CSS, JS</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Gemma LLM</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/AshishW/MECL-Chatbot-hackathon" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!--  ArtVisionX AI -->
+            <div class="project" data-categories="Web,AI/ML">
+                <img src="../static/project_thumbnails/artvisionx_ai.jpg" alt="artvisionx_ai" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">ArtVisionX AI</h3>
+                    <strong>(Google GenAI Exchange Hackathon)</strong>
+                    <p class="project-description">AI-powered dynamic banner generator tailored for promotional needs to address <strong>BigBasket's problem statement</strong> at <strong> Google Gen AI Exchange Hackathon 2024.</strong></p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">Flux.1-Schnell</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://devfolio.co/projects/artvisionx-ai-208b" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Brain Image Recognition -->
+            <div class="project" data-categories="Web">
+                <img src="../static/project_thumbnails/smartbrain-project.jpg" alt="smartbrain-project" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Smart Brain Image Recognition</h3>
+                    <p class="project-description">Face detection web application that allows the user to upload an image address/URL and uses machine learning model from Clarifai (REST API) to detect face in that image.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ashishw.github.io/Smart-brain-image-recognition/" target="_blank">Demo</a>
+                        <a href="https://github.com/AshishW/Smart-brain-image-recognition" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- React Pokedex -->
+            <div class="project" data-categories="Web">
+                <img src="../static/project_thumbnails/react-pokedex.png" alt="Pokedex" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Pokedex</h3>
+                    <p class="project-description">Pokedex made using React.js and PokeAPI</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">PokeAPI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ashishw.github.io/ReactPokedex/" target="_blank">Demo</a>
+                        <a href="https://github.com/AshishW/ReactPokedex" target="_blank">Github</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2d Platformer -->
+            <div class="project" data-categories="Web,Game">
+                <img src="../static/project_thumbnails/platformer-game.png" alt="Platform-game" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Urban-Flux</h3>
+                    <p class="project-description">A fun 2D-platformer game made just using prompts with Claude 3.5 Sonnet.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Prompt Engineering</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ashishw.github.io/2D-platfomer-game" target="_blank">Demo</a>
+                        <a href="https://github.com/AshishW/2D-platfomer-game" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Random Quote Generator -->
+            <div class="project" data-categories="Web">
+                <img src="../static/project_thumbnails/random-quote-generator.png" alt="random-quote-gen" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Quote Generator</h3>
+                    <p class="project-description">Simple Quote generator made using React.js</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ashishw.github.io/Random-Quote-Generator/" target="_blank">Demo</a>
+                        <a href="https://github.com/AshishW/Random-Quote-Generator" target="_blank">Github</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personality Quiz -->
+            <div class="project" data-categories="Web">
+                <img src="../static/project_thumbnails/personality-quiz.png" alt="personality-quiz" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Personality Quiz</h3>
+                    <p class="project-description">Fun Personality Quiz based on totaly Random things</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">React-Router</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ashishw.github.io/Random-Quote-Generator/" target="_blank">Demo</a>
+                        <a href="https://github.com/AshishW/Random-Quote-Generator" target="_blank">Github</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Password Checker -->
+            <div class="project" data-categories="App">
+                <img src="../static/project_thumbnails/password_checker.png" alt="Password-checker" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Password Checker</h3>
+                    <p class="project-description">Password breach checker with Tkinter GUI using "Have I Been Pwned" API and SHA-1 hashing, providing real-time feedback on password strength and breach status.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Tkinter</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/AshishW/PasswordChecker" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more project divs as needed -->
+             <!-- https://place-hold.it/400x200 for place holder image-->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ashish Waikar. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.project');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter projects
+                projects.forEach(project => {
+                    const categories = project.getAttribute('data-categories').split(',');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
