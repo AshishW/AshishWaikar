@@ -20,16 +20,16 @@ def submit_form():
     email = request.form["email"]
     message = request.form["message"]
     try:
-        with open("messsages.md", "a") as file:
-            file.write(f"## New Submission\n")
-            file.write(f"**Name:** {name}\n")
-            file.write(f"**Email:** {email}\n")
-            file.write(f"**Message:** {message}\n")
-            file.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            file.write("\n---\n\n")
+        # with open("messsages.md", "a") as file:
+        #     file.write(f"## New Submission\n")
+        #     file.write(f"**Name:** {name}\n")
+        #     file.write(f"**Email:** {email}\n")
+        #     file.write(f"**Message:** {message}\n")
+        #     file.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        #     file.write("\n---\n\n")
         load_dotenv()
         ntfy_topic = os.getenv("NTFY_TOPIC")
-        ntfy_message = f"New message from {name} ({email}). 📩 \n check messages(md) file in portfolio"
+        ntfy_message = f"New message from {name} ({email}). 📩 \n check messages(md) file in portfolio: {message}"
 
         requests.post(f"https://ntfy.sh/{ntfy_topic}", data=ntfy_message.encode(encoding='utf-8'))
         return jsonify(success = True)
