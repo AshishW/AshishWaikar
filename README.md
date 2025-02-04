@@ -5,6 +5,6 @@ This is my personal portfolio website showcasing my skills, projects, and experi
 
 
 ### Project page of portfolio
-![Project Demo Video](static/screen_rec.mp4)
+![Project Demo Video](static/screen_rec.gif)
 
 
